@@ -65,7 +65,7 @@ pipeline {
           // sh 'docker tag imagenprueba $USER_CREDENTIAL_USR/$PROJECT_NAME:$PROJECT_VERSION'
           sh 'docker image ls'
           
-        sh 'docker image push juanse793/frontbagoimage:latest'
+        sh 'docker image load juanse793/frontbagoimage:latest'
         sh 'docker rmi juanse793/frontbagoimage:latest'
         }
       }
