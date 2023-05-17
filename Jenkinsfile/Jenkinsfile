@@ -6,6 +6,8 @@ pipeline {
     PROJECT_NAME = 'frontbagoimage'
     DEPLOY_CONTEXT = '/msBagoFrontend/'
     PROJECT_VERSION = 'latest'
+    docker = tool 'docker2'
+    dockerimagename = 'josanbaq7/frontbagoimage'
   }
 
   agent {
@@ -85,12 +87,17 @@ pipeline {
 
       steps {
         container('docker') {
-          sh 'docker logout'
-          sh 'cd $HOME'
-          sh 'docker login $DOCKER_REPOSITORY -u juanse793 -p Nachito2020@'
-          sh 'docker image ls'
-          sh "docker push juanse793/frontbagoimage:latest"
-        
+         // sh 'docker logout'
+         // sh 'cd $HOME'
+         // sh 'docker login $DOCKER_REPOSITORY -u juanse793 -p Nachito2020@'
+         // sh 'docker image ls'
+          //sh "docker push juanse793/frontbagoimage:latest"
+          dockerImage = docker.build dockerimagename
+             script {
+                    docker.withRegistry("https://registry.hub.docker.com", "dockerhub-bago-js") {
+                        dockerImage.push()
+                    }
+                }
 
         }
       }
