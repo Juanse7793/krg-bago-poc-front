@@ -58,6 +58,7 @@ pipeline {
       when { expression { true } }
       steps {
         container('docker') {
+          sh 'chmod 0777 /var/run/docker.sock' 
           sh 'docker logout'
           sh 'cd $HOME'
           sh 'docker login $DOCKER_REPOSITORY -u juanse793 -p Nachito2020@'
