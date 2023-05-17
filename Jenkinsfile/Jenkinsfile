@@ -92,7 +92,7 @@ pipeline {
          // sh 'docker login $DOCKER_REPOSITORY -u juanse793 -p Nachito2020@'
          // sh 'docker image ls'
           //sh "docker push juanse793/frontbagoimage:latest"
-          dockerImage = docker.build dockerimagename
+         def dockerImage = docker.build dockerimagename
              script {
                     docker.withRegistry("https://registry.hub.docker.com", "dockerhub-bago-js") {
                         dockerImage.push()
