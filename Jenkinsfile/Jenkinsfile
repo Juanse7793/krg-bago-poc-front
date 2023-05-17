@@ -67,7 +67,7 @@ pipeline {
           sh 'docker image ls'
           
           sh 'docker push juanse793/frontbagoimage:latest'
-        sh 'docker rmi juanse793/frontbagoimage:latest'
+       // sh 'docker rmi juanse793/frontbagoimage:latest'
         }
       }
     }
