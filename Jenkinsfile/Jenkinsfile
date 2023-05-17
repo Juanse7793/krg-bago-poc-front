@@ -64,7 +64,7 @@ pipeline {
           sh 'docker login $DOCKER_REPOSITORY -u ricardo0081 -p Peru123.'
 
           // sh 'docker tag juanse793/frontbagoimage:latest juanse793/frontbagoimage:latest'
-          sh 'docker build . -t docker.io/ricardo0081/frontbagoricardo:latest'
+          sh 'docker build . -t docker.io/ricardo0081/frontbagoricardo:latest --load'
           // sh 'docker tag imagenprueba $USER_CREDENTIAL_USR/$PROJECT_NAME:$PROJECT_VERSION'
           sh 'docker image ls'
           
