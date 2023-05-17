@@ -95,7 +95,7 @@ pipeline {
         
              script {
                 def dockerImage = docker.build dockerimagename
-                    docker.withRegistry("https://registry.hub.docker.com", "dockerhub-bago-js") {
+                    docker.withRegistry("https://docker.io", "dockerhub-bago-js") {
                         dockerImage.push()
                     }
                 }
