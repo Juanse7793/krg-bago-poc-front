@@ -58,15 +58,15 @@ pipeline {
       when { expression { true } }
       steps {
         container('docker') {
-          sh 'docker logout'
-          sh 'cd $HOME'
-          sh 'docker login $DOCKER_REPOSITORY -u juanse793 -p Nachito2020@'
-          sh 'docker build -t juanse793/frontbagoimage .'
+          sh 'sudo docker logout'
+          sh 'sudo cd $HOME'
+          sh 'sudo docker login $DOCKER_REPOSITORY -u juanse793 -p Nachito2020@'
+          sh 'sudo docker build -t juanse793/frontbagoimage .'
           // sh 'docker tag imagenprueba $USER_CREDENTIAL_USR/$PROJECT_NAME:$PROJECT_VERSION'
-          sh 'docker image ls'
+          sh 'sudo docker image ls'
           
-        sh 'docker image push juanse793/frontbagoimage'
-        sh 'docker rmi juanse793/frontbagoimage'
+        sh 'sudo docker image push juanse793/frontbagoimage'
+        sh 'sudo docker rmi juanse793/frontbagoimage'
         }
       }
     }
