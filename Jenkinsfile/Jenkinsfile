@@ -60,8 +60,8 @@ pipeline {
         container('docker') {
           sh 'docker logout'
           sh 'cd $HOME'
-//          sh 'docker login $DOCKER_REPOSITORY -u juanse793 -p Nachito2020@'
-          sh 'docker login $DOCKER_REPOSITORY -u ricardo0081 -p Peru123.'
+          sh 'docker login $DOCKER_REPOSITORY -u juanse793 -p Nachito2020@'
+     //     sh 'docker login $DOCKER_REPOSITORY -u ricardo0081 -p Peru123.'
 
           // sh 'docker tag juanse793/frontbagoimage:latest juanse793/frontbagoimage:latest'
           sh 'docker build . -t docker.io/juanse793/frontbagoimage:latest --load'
@@ -74,9 +74,9 @@ pipeline {
       }
     }
     stage('Push image') {
-        withDockerRegistry([ credentialsId: "dockerhub-bago-js", url: "$DOCKER_REPOSITORY" ]) {
+       // withDockerRegistry([ credentialsId: "dockerhub-bago-js", url: "$DOCKER_REPOSITORY" ]) {
             sh "docker push juanse793/frontbagoimage:latest"
-        }
+        //}
     }
   }
   
