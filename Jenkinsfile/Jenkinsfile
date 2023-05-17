@@ -72,11 +72,28 @@ pipeline {
        // sh 'docker rmi ricardo0081/frontbagoricardo:latest'
         }
       }
+
+      
+
+      
+     
+      
+      
     }
     stage('Push image') {
-       // withDockerRegistry([ credentialsId: "dockerhub-bago-js", url: "$DOCKER_REPOSITORY" ]) {
-            sh "docker push juanse793/frontbagoimage:latest"
-        //}
+
+      steps {
+        container('docker') {
+          sh 'docker logout'
+          sh 'cd $HOME'
+          sh 'docker login $DOCKER_REPOSITORY -u juanse793 -p Nachito2020@'
+          sh 'docker image ls'
+          sh "docker push juanse793/frontbagoimage:latest"
+        
+
+        }
+      }
+       
     }
   }
   
