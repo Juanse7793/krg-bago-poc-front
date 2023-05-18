@@ -92,13 +92,11 @@ pipeline {
          // sh 'docker login $DOCKER_REPOSITORY -u juanse793 -p Nachito2020@'
          // sh 'docker image ls'
           //sh "docker push juanse793/frontbagoimage:latest"
-        
-             script {
-                def dockerImage = docker.build dockerimagename
-                    docker.withRegistry("https://docker.io", "dockerhub-bago-js") {
-                        dockerImage.push()
+          withCredentials([usernamePassword(credentialsId: 'dockerhub-bago-js', passwordVariable: 'DOCKER_HUB_PASSWORD', usernameVariable: 'DOCKER_HUB_USERNAME')]) {
+                        sh "docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD"
+                        sh "docker push $dockerimagename"
                     }
-                }
+           
 
         }
       }
