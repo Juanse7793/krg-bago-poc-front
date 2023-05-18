@@ -63,16 +63,13 @@ pipeline {
           sh 'chmod 0777 /var/run/docker.sock' 
           sh 'docker logout'
           sh 'cd $HOME'
-          sh 'docker login $DOCKER_REPOSITORY -u juanse793 -p Nachito2020@'
-     //     sh 'docker login $DOCKER_REPOSITORY -u ricardo0081 -p Peru123.'
-
-          // sh 'docker tag juanse793/frontbagoimage:latest juanse793/frontbagoimage:latest'
+          //sh 'docker login $DOCKER_REPOSITORY -u juanse793 -p Nachito2020@'
+    
           sh 'docker build . -t docker.io/juanse793/frontbagoimage:latest --load'
-          // sh 'docker tag imagenprueba $USER_CREDENTIAL_USR/$PROJECT_NAME:$PROJECT_VERSION'
-          sh 'docker image ls'
+
+          //sh 'docker image ls'
           
-          //sh 'docker push ricardo0081/frontbagoricardo:latest'
-       // sh 'docker rmi ricardo0081/frontbagoricardo:latest'
+
         }
       }
 
