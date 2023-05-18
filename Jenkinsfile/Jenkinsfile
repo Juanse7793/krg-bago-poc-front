@@ -61,7 +61,7 @@ pipeline {
         script {
           def scannerHome = tool 'SonarScanner'
           withSonarQubeEnv('sonar-server') {
-              sh "${scannerHome}/bin/sonar-scanner -D sonar.projectKey=bago-poc-frontend-jenk"
+              sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=bago-poc-frontend-jenk"
           }
         }
       }
