@@ -56,6 +56,16 @@ pipeline {
     }
   }
   stages {
+    stage('SonarQube Analysis') {
+    steps {
+        script {
+            def scannerHome = tool 'SonarScanner'
+            withSonarQubeEnv('sonar-server') {
+                sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=bago-poc-frontend"
+            }
+          }
+      }
+    }
     stage('Build and publish docker image') {
       when { expression { true } }
       steps {
