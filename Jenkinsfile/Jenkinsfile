@@ -100,6 +100,37 @@ pipeline {
       }
        
     }
+    
+    
+    
+    
+    
+    
+    
+    
+      stage('Deploy') {
+      when { expression { true } }
+      steps {
+        container('helm') {
+          sh 'curl -LO https://dl.k8s.io/release/v1.25.1/bin/linux/amd64/kubectl \
+                && mv kubectl /bin/kubectl \
+                && chmod a+x /bin/kubectl'
+          //withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8s', namespace: '', serverUrl: '') {
+            script {
+              try {
+                      kubernetesDeploy(configs: "deployment.yml", kubeconfigId: "kubectl-bago-credentials")
+              } catch (Exception e) {
+                echo 'Exception to uninstall: ' +  e.toString()
+              }
+
+          }
+        }
+      }
+    }
+    
+    
+    
+    
   }
   
   
