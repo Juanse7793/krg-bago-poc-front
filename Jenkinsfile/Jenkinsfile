@@ -118,7 +118,7 @@ pipeline {
                withKubeConfig([
             credentialsId: 'kubectl-bago-credentials',
             caCertificate: '',
-            serverUrl: 'https://192.168.5.65/k8s/clusters/c-m-htcg95cq',
+            serverUrl: '',
             contextName: '',
             clusterName: '',
             namespace: 'bagodev'
@@ -130,7 +130,8 @@ pipeline {
                    && mv kubectl /bin/kubectl \
                     && chmod a+x /bin/kubectl  && chmod 0777 /bin/kubectl'
                     sh 'ls -la'
-                sh("kubectl get ns development || kubectl apply -f deployment.yml")
+                   sh 'kubectl get pods -n bagodev'
+                    sh 'kubectl apply -f deployment.yml -n bagodev'
                   } catch (Exception e) {
                     echo 'Exception to uninstall: ' +  e.toString()
                   }
