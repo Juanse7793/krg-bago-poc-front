@@ -115,9 +115,7 @@ pipeline {
          
           //withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8s', namespace: '', serverUrl: '') {
             script {
-              sh 'curl -LO https://dl.k8s.io/release/v1.25.1/bin/linux/amd64/kubectl \
-               && mv kubectl /bin/kubectl \
-                && chmod a+x /bin/kubectl  && chmod 0777 /bin/kubectl'
+             
                withKubeConfig([
             credentialsId: 'kubectl-bago-credentials',
             caCertificate: '',
@@ -126,6 +124,9 @@ pipeline {
             clusterName: '',
             namespace: 'bagodev'
                 ]) {
+                  sh 'curl -LO https://dl.k8s.io/release/v1.25.1/bin/linux/amd64/kubectl \
+               && mv kubectl /bin/kubectl \
+                && chmod a+x /bin/kubectl  && chmod 0777 /bin/kubectl'
             sh("kubectl get ns development || kubectl apply -f deployment.yml")
               }
               
