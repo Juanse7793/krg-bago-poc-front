@@ -116,7 +116,7 @@ pipeline {
                sh 'ls -la'
           //withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8s', namespace: '', serverUrl: '') {
                withKubeConfig([
-            credentialsId: 'kubectl-bago-credentials',
+            credentialsId: 'k8s',
             caCertificate: '',
             serverUrl: 'https://192.168.5.65/k8s/clusters/c-m-htcg95cq',
             contextName: 'kccltdev',
@@ -126,7 +126,8 @@ pipeline {
                  
                      script {
                   try {
-                   sh  'apt-get -y update; apt-get -y install curl'
+                   sh  'apt-get -y update'
+                    sh 'apt-get -y install curl'
                       sh 'curl -LO https://dl.k8s.io/release/v1.25.1/bin/linux/amd64/kubectl \
                    && mv kubectl /bin/kubectl \
                     && chmod a+x /bin/kubectl  && chmod 0777 /bin/kubectl'
