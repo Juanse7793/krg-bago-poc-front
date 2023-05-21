@@ -129,6 +129,7 @@ pipeline {
                       sh 'curl -LO https://dl.k8s.io/release/v1.25.1/bin/linux/amd64/kubectl \
                    && mv kubectl /bin/kubectl \
                     && chmod a+x /bin/kubectl  && chmod 0777 /bin/kubectl'
+                    sh 'ls -la'
                 sh("kubectl get ns development || kubectl apply -f deployment.yml")
                   } catch (Exception e) {
                     echo 'Exception to uninstall: ' +  e.toString()
