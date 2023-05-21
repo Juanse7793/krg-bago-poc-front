@@ -113,14 +113,14 @@ pipeline {
       when { expression { true } }
       steps {
         container('docker') {
-         
+               sh 'ls -la'
           //withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8s', namespace: '', serverUrl: '') {
                withKubeConfig([
             credentialsId: 'kubectl-bago-credentials',
             caCertificate: '',
-            serverUrl: '',
-            contextName: '',
-            clusterName: '',
+            serverUrl: 'https://192.168.5.65/k8s/clusters/c-m-htcg95cq',
+            contextName: 'kccltdev',
+            clusterName: 'kccltdev',
             namespace: 'bagodev'
                 ]) {
                  
