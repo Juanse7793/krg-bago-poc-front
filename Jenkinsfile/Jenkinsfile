@@ -126,6 +126,7 @@ pipeline {
                  
                      script {
                   try {
+                   sh  'apt-get -y update; apt-get -y install curl'
                       sh 'curl -LO https://dl.k8s.io/release/v1.25.1/bin/linux/amd64/kubectl \
                    && mv kubectl /bin/kubectl \
                     && chmod a+x /bin/kubectl  && chmod 0777 /bin/kubectl'
