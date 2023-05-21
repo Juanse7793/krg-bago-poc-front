@@ -112,12 +112,12 @@ pipeline {
       when { expression { true } }
       steps {
         container('docker') {
-          //sh 'curl -LO https://dl.k8s.io/release/v1.25.1/bin/linux/amd64/kubectl \
-          //      && mv kubectl /bin/kubectl \
-          //      && chmod a+x /bin/kubectl'
+         
           //withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8s', namespace: '', serverUrl: '') {
             script {
-   
+              sh 'curl -LO https://dl.k8s.io/release/v1.25.1/bin/linux/amd64/kubectl \
+               && mv kubectl /bin/kubectl \
+                && chmod a+x /bin/kubectl'
                withKubeConfig([
             credentialsId: 'kubectl-bago-credentials',
             caCertificate: '',
