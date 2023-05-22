@@ -7,6 +7,51 @@ export const MyCard = ({ name, birthday, email, phone, position }) => {
   } else {
     console.log("This should never execute!");
   }
+  if (1 === 1) {
+    console.log("This should not always execute!");
+  } else {
+    console.log("This should never execute!");
+  }
+  if (1 === 1) {
+    console.log("This should not always execute!");
+  } else {
+    console.log("This should never execute!");
+  }
+  if (1 === 1) {
+    console.log("This should not always execute!");
+  } else {
+    console.log("This should never execute!");
+  }
+  if (1 === 1) {
+    console.log("This should not always execute!");
+  } else {
+    console.log("This should never execute!");
+  }
+  if (1 === 1) {
+    console.log("This should not always execute!");
+  } else {
+    console.log("This should never execute!");
+  }
+  if (1 === 1) {
+    console.log("This should not always execute!");
+  } else {
+    console.log("This should never execute!");
+  }
+  if (1 === 1) {
+    console.log("This should not always execute!");
+  } else {
+    console.log("This should never execute!");
+  }
+  if (1 === 1) {
+    console.log("This should not always execute!");
+  } else {
+    console.log("This should never execute!");
+  }
+  if (1 === 1) {
+    console.log("This should not always execute!");
+  } else {
+    console.log("This should never execute!");
+  }
 
   return (
     <div className="card flex align-items-center justify-content-center gap-4 border-card">
