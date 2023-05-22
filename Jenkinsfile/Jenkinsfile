@@ -69,6 +69,7 @@ pipeline {
           def scannerHome = tool 'SonarScanner';
           withSonarQubeEnv('sonar-server') {
               sh "${scannerHome}/bin/sonar-scanner -X -Dsonar.projectKey=bago-poc-frontend-jenk"
+            }
           def qg = waitForQualityGate()
             if (qg.status != 'OK') {
               error "Pipeline aborted due to quality gate failure: ${qg.status}"
