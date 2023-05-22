@@ -117,10 +117,8 @@ pipeline {
       }
        
     }
-  }
 
-
-  stage('Deploy') {
+    stage('Deploy') {
       when { expression { true } }
       steps {
         container('helm') {
@@ -157,4 +155,5 @@ pipeline {
       }
   
   
-}
+    }
+  }
