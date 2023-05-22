@@ -70,18 +70,11 @@ pipeline {
       }
     }
 
-    // stage('Quality Gate') {
-    //   steps {
-    //     script {
-    //       timeout(time: 1, unit: 'HOURS') {
-    //         def qg = waitForQualityGate()
-    //         if (qg.status != 'Passed') {
-    //           error "Pipeline aborted due to quality gate failure: ${qg.status}"
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
+    stage('Quality Gate') {
+      steps {
+          waitForQualityGate abortPipeline: true
+      }
+    }
     stage('Build and publish docker image') {
       when { expression { true } }
       steps {
