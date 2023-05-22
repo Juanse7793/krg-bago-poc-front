@@ -15,7 +15,7 @@ spec:
         app: react-app-bago
     spec:
       containers:
-      - name: react-app
-        image: juanse793/frontbagoimage:latest
-        ports:
-        - containerPort: 80
+        - name: react-app
+          image: juanse793/frontbagoimage:latest
+          ports:
+            - containerPort: 5172
