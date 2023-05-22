@@ -72,14 +72,6 @@ pipeline {
         }
       }
     }
-    stage("Quality Gate") {
-      steps {
-        timeout(time: 1, unit: 'HOURS') {
-         waitForQualityGate abortPipeline: true
-        }
-      }
-    }
-
 
     stage('Build and publish docker image') {
       when { expression { true } }
@@ -126,6 +118,43 @@ pipeline {
        
     }
   }
+
+
+  stage('Deploy') {
+      when { expression { true } }
+      steps {
+        container('helm') {
+               sh 'ls -la'
+          //withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8s', namespace: '', serverUrl: '') {
+               withKubeConfig([
+            credentialsId: 'k8s',
+            caCertificate: '',
+            serverUrl: 'https://192.168.5.65/k8s/clusters/c-m-htcg95cq',
+            contextName: 'kccltdev',
+            clusterName: 'kccltdev',
+            namespace: 'bagodev'
+                ]) {
+                 
+                     script {
+                  try {
+                  // sh  'apt-get -y update'
+                  //  sh 'apt-get -y install curl'
+                      sh 'curl -LO https://dl.k8s.io/release/v1.25.1/bin/linux/amd64/kubectl \
+                   && mv kubectl /bin/kubectl \
+                    && chmod a+x /bin/kubectl  && chmod 0777 /bin/kubectl'
+                    sh 'ls -la'
+                   sh 'kubectl get pods -n bagodev'
+                    sh 'kubectl apply -f deployment.yml -n bagodev'
+                  } catch (Exception e) {
+                    echo 'Exception to uninstall: ' +  e.toString()
+                  }
+                     }
+              }
+      
+
+          }
+        }
+      }
   
   
 }
