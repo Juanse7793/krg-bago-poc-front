@@ -144,6 +144,7 @@ pipeline {
                     sh 'kubectl get pods -n bagodev'
                     sh 'kubectl apply -f deployment.yaml -n bagodev'
                     sh 'kubectl apply -f service.yaml -n bagodev'
+                    sh 'kubectl get service react-app-bago -n bagodev'
                   } catch (Exception e) {
                     echo 'Exception to uninstall: ' +  e.toString()
                   }
