@@ -71,7 +71,7 @@ pipeline {
           }
         }
         script {
-            def qg = waitForQualityGate()
+            def qg = waitForQualityGate('sonar-server')
             if (qg.status != 'OK') {
               error "Pipeline aborted due to quality gate failure: ${qg.status}"
             }
