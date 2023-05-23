@@ -71,7 +71,7 @@ pipeline {
                 script {
                     // Instala las dependencias del proyecto
                     def npm = tool 'npm';
-                    sh "${npm} ci"
+                    sh "chmod +x ${npm} ci"
                     
                     // Ejecuta los comandos de prueba
                     def testResult = sh(returnStatus: true, script: "${npm} run test")
