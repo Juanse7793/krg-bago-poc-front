@@ -66,7 +66,25 @@ pipeline {
 
   stages {
 
-    
+    stage('Test') {
+    steps {
+        script {
+            // Cambiar permisos del archivo npm
+            sh 'chmod +x /home/jenkins/agent/tools/jenkins.plugins.nodejs.tools.NodeJSInstallation/npm'
+            
+            // Instala las dependencias del proyecto
+            sh '/home/jenkins/agent/tools/jenkins.plugins.nodejs.tools.NodeJSInstallation/npm ci'
+            
+            // Ejecuta los comandos de prueba
+            def testResult = sh(returnStatus: true, script: '/home/jenkins/agent/tools/jenkins.plugins.nodejs.tools.NodeJSInstallation/npm run test')
+            
+            // Verifica el resultado de las pruebas
+            if (testResult != 0) {
+                error('Las pruebas fallaron. Deteniendo el pipeline.')
+            }
+        }
+    }
+  }
 
     stage('SonarQube Analysis') {
       steps {
@@ -78,29 +96,6 @@ pipeline {
         }
       }
     }
-
-      stage('Test') {
-            steps {
-                script {
-
-                    // Instala las dependencias del proyecto
-                    def npm = tool 'npm';
-
-
-                    sh "${npm} ci"
-                    
-                    // Ejecuta los comandos de prueba
-                    def testResult = sh(returnStatus: true, script: "${npm} run test")
-                    
-                    // Verifica el resultado de las pruebas
-                    if (testResult != 0) {
-                        error('Las pruebas fallaron. Deteniendo el pipeline.')
-                    }
-                }
-          }
-      }
-
-
 
     stage('Build and publish docker image') {
       when { expression { true } }
