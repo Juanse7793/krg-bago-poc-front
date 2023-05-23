@@ -66,24 +66,7 @@ pipeline {
 
   stages {
 
-    stage('Test') {
-          steps {
-            script {
-              // Instala las dependencias del proyecto
-              sh 'npm ci'
-            
-              // Ejecuta los comandos de prueba
-              def testResult = sh(returnStatus: true, script: 'npm run test')
-            
-              // Verifica el resultado de las pruebas
-              if (testResult != 0) {
-                error('Las pruebas unitarias fallaron. Se detendrá el pipeline.')
-              }
-                    
-            }
-          }
-      
-    }
+    
     stage('SonarQube Analysis') {
       steps {
         script {
@@ -96,7 +79,18 @@ pipeline {
     }
 
       
-
+    stage('Unit Tests') {
+      steps {
+        script {
+          sh 'npm ci'
+          def testResult = sh(returnStatus: true, script: 'npm run test')
+          if (testResult != 0) {
+            error('Las pruebas unitarias fallaron. Se detendrá el pipeline.')
+          }     
+        }
+      }
+      
+    }
 
 
     stage('Build and publish docker image') {
