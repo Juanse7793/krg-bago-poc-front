@@ -77,7 +77,7 @@ pipeline {
             
               // Verifica el resultado de las pruebas
               if (testResult != 0) {
-                error('Las pruebas fallaron. Deteniendo el pipeline.')
+                error('Las pruebas unitarias fallaron. Se detendrá el pipeline.')
               }
                     
             }
