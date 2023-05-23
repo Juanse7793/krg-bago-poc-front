@@ -68,8 +68,8 @@ pipeline {
 
     stage('Test') {
             steps {
-                    bat "npm install"
-                    bat "npm run test"
+                    sh "npm install"
+                    sh "npm run test"
                 }
           }
       
