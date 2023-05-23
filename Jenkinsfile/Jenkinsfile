@@ -73,8 +73,8 @@ pipeline {
                     // Instala las dependencias del proyecto
                     def npm = tool 'npm';
 
-                    sh 'ls -la'
-                    sh 'which npm'
+                    sh 'ls'
+                    sh "which ${npm}"
                     sh "${npm} ci"
                     
                     // Ejecuta los comandos de prueba
