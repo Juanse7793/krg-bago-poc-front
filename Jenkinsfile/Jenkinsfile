@@ -66,12 +66,24 @@ pipeline {
 
   stages {
 
-    stage('Test') {
+    
+
+    stage('SonarQube Analysis') {
+      steps {
+        script {
+          def scannerHome = tool 'SonarScanner';
+          withSonarQubeEnv('sonar-server') {
+              sh "${scannerHome}/bin/sonar-scanner -X -Dsonar.projectKey=bago-poc-frontend-jenk"
+          }
+        }
+      }
+    }
+
+      stage('Test') {
             steps {
                 script {
 
                     // Instala las dependencias del proyecto
-                    sh 'chmod +x /home/jenkins/agent/tools/jenkins.plugins.nodejs.tools.NodeJSInstallation/npm'
                     def npm = tool 'npm';
 
 
@@ -86,18 +98,9 @@ pipeline {
                     }
                 }
           }
-    }
-
-    stage('SonarQube Analysis') {
-      steps {
-        script {
-          def scannerHome = tool 'SonarScanner';
-          withSonarQubeEnv('sonar-server') {
-              sh "${scannerHome}/bin/sonar-scanner -X -Dsonar.projectKey=bago-poc-frontend-jenk"
-          }
-        }
       }
-    }
+
+
 
     stage('Build and publish docker image') {
       when { expression { true } }
