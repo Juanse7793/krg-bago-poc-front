@@ -69,9 +69,13 @@ pipeline {
     stage('Test') {
             steps {
                 script {
+
                     // Instala las dependencias del proyecto
+                    sh 'chmod +x /home/jenkins/agent/tools/jenkins.plugins.nodejs.tools.NodeJSInstallation/npm'
                     def npm = tool 'npm';
-                    sh "chmod +x ${npm} ci"
+
+
+                    sh "${npm} ci"
                     
                     // Ejecuta los comandos de prueba
                     def testResult = sh(returnStatus: true, script: "${npm} run test")
