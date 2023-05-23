@@ -74,7 +74,7 @@ pipeline {
                     def npm = tool 'npm';
 
                     sh 'chmod +x /home/jenkins/agent/tools/jenkins.plugins.nodejs.tools.NodeJSInstallation/npm'
-                    sh "${npm} ci"
+                    sh "${npm} install"
                     
                     // Ejecuta los comandos de prueba
                     def testResult = sh(returnStatus: true, script: "${npm} run test")
