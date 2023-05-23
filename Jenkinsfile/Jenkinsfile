@@ -73,7 +73,7 @@ pipeline {
                     // Instala las dependencias del proyecto
                     def npm = tool 'npm';
 
-                    sh 'chmod 0777 /home/jenkins/agent/tools/jenkins.plugins.nodejs.tools.NodeJSInstallation/npm'
+                    sh 'chmod +x /home/jenkins/agent/tools/jenkins.plugins.nodejs.tools.NodeJSInstallation/npm'
                     sh "${npm} ci"
                     
                     // Ejecuta los comandos de prueba
