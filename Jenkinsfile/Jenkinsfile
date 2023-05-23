@@ -62,27 +62,14 @@ pipeline {
     }
   }
  
- 
+ tools {nodejs 'nodejs'} 
 
   stages {
 
     stage('Test') {
             steps {
-                script {
-
-                    // Instala las dependencias del proyecto
-                    def npm = tool 'npm';
-
-                    sh 'chmod +x /home/jenkins/agent/tools/jenkins.plugins.nodejs.tools.NodeJSInstallation/npm'
-                    sh "${npm} install"
-                    
-                    // Ejecuta los comandos de prueba
-                    def testResult = sh(returnStatus: true, script: "${npm} run test")
-                    
-                    // Verifica el resultado de las pruebas
-                    if (testResult != 0) {
-                        error('Las pruebas fallaron. Deteniendo el pipeline.')
-                    }
+                    bat "npm install"
+                    bat "npm run test"
                 }
           }
       }
