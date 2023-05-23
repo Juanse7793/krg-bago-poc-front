@@ -62,18 +62,28 @@ pipeline {
     }
   }
  
- tools {nodejs 'npm'} 
+  tools {nodejs 'npm'} 
 
   stages {
 
     stage('Test') {
-            steps {
-                    sh "npm install"
-                    sh "npm run test"
-                }
+          steps {
+            script {
+              // Instala las dependencias del proyecto
+              sh 'npm ci'
+            
+              // Ejecuta los comandos de prueba
+              def testResult = sh(returnStatus: true, script: 'npm run test')
+            
+              // Verifica el resultado de las pruebas
+              if (testResult != 0) {
+                error('Las pruebas fallaron. Deteniendo el pipeline.')
+              }
+                    
+            }
           }
       
-
+    }
     stage('SonarQube Analysis') {
       steps {
         script {
