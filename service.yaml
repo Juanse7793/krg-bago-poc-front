@@ -3,9 +3,11 @@ kind: Service
 metadata:
   name: react-app-bago
 spec:
+  type: NodePort
   selector:
     app: react-app-bago
   ports:
-    - port: 3000
+    - protocol: TCP
+      port: 3000
       targetPort: 5172
-  type: LoadBalancer
+      nodePort: 30486
