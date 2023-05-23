@@ -62,7 +62,7 @@ pipeline {
     }
   }
  
- tools {nodejs 'nodejs'} 
+ tools {nodejs 'npm'} 
 
   stages {
 
