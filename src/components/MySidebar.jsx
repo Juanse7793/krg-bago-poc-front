@@ -38,7 +38,7 @@ export const MySidebar = () => {
           type="button"
           label="Compras"
           icon="pi pi-cart-plus"
-          style={{ background: "#9f170e", width: "85%" }}
+          style={{ background: "#9f177e", width: "85%" }}
           onClick={() => navigate("/table-data-two")}
         />
         <br />
