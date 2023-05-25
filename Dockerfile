@@ -6,7 +6,7 @@ COPY . .
 # COPY .env.local .env
 RUN npm run build
 
-FROM nginx:alpine
+FROM nginx:mainline
 ADD ./config/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/dist /var/www/app
 EXPOSE 5172
