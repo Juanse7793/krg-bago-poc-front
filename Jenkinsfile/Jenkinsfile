@@ -23,9 +23,6 @@ pipeline {
           - ip: "192.168.5.67"
             hostnames:
               - "nexusdev.krugercorp.com"
-          - ip: "192.168.5.67"
-            hostnames:
-              - "dockerdev.krugercorp.com"
           - ip: "192.168.5.27"
             hostnames:
               - "sonarqubekrugercorp.com"
