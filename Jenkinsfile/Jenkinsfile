@@ -90,10 +90,12 @@ pipeline {
       when { expression { true } }
       steps {
         container('docker') {
+            withCredentials([usernamePassword(credentialsId: 'dockerhub-bago-js', passwordVariable: 'DOCKER_HUB_PASSWORD', usernameVariable: 'DOCKER_HUB_USERNAME')]) {
           sh 'chmod 0777 /var/run/docker.sock' 
           sh 'docker logout'
           sh 'cd $HOME'
           sh 'docker build . -t docker.io/juanse793/frontbagoimage:latest --load'
+            }
         }
       }
     }
