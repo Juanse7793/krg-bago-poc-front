@@ -1,4 +1,4 @@
-FROM node:lts-bullseye AS build
+FROM node:lts AS build
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
