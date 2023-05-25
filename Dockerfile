@@ -1,4 +1,4 @@
-FROM node:lts AS build
+FROM node:14-alphine AS build
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
