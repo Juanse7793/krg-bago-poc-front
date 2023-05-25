@@ -33,14 +33,14 @@ pipeline {
             hostnames:
               - "jenkinsdev.krugercorp.com"
           containers:
-          - name: node
-            env:
-              - name: 'HOME'
-                value: '.'
-            image: node:16.17.0-alpine3.16
-            command:
-            - cat
-            tty: true
+      //    - name: node
+      //      env:
+      //        - name: 'HOME'
+      //          value: '.'
+      //      image: node:16.17.0-alpine3.16
+      //      command:
+      //      - cat
+      //      tty: true
           - name: docker
             image: docker:24.0.0-cli-alpine3.18
             command:
