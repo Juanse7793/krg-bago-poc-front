@@ -33,6 +33,6 @@ describe("Table two", () => {
 
   test("renders table two Activity column", () => {
     render(<TableTwoPage />);
-    expect(screen.getByText("Activity")).toBeDefined();
+    expect(screen.getByText("Activityy")).toBeDefined();
   });
 });
