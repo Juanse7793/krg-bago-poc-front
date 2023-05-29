@@ -91,7 +91,7 @@ pipeline {
           sh 'chmod 0777 /var/run/docker.sock' 
           sh 'docker logout'
           sh 'cd $HOME'
-          sh 'docker build . -t docker.io/juanse793/frontbagoimage:latest --load'
+          sh 'docker build . -t docker.io/juanse793/frontbagoimage:latest'
             }
         }
       }
