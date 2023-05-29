@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // eslint-disable-next-line no-undef
-const BirthdayApiService = 'http://bago-backend-2/api/v1/employees/birthdays';
+const BirthdayApiService = 'http://192.168.5.16:30485/api/v1/employees/birthdays';
 
 const getEmployeesBirthdays = async () => {
   try {
