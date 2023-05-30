@@ -20,7 +20,7 @@ export const MySidebar = () => {
           type="button"
           label="Home"
           icon="pi pi-home"
-          style={{ background: "#9f177e", width: "85%" }}
+          style={{ background: "#1f100e", width: "85%" }}
           onClick={() => navigate("/")}
         />
         <br />
@@ -29,7 +29,7 @@ export const MySidebar = () => {
           type="button"
           label="Comercial"
           icon="pi pi-briefcase"
-          style={{ background: "#9f177e", width: "85%" }}
+          style={{ background: "#2f177e", width: "85%" }}
           onClick={() => navigate("/table-data-one")}
         />
         <br />
